@@ -8,6 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 # Load Groq API key from Colab Secrets
 GROQ_API_KEY = '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'
+GEMINI_API_KEy = 'AQ.Ab8RN6I705VMrF0-vQ282Y-1cyKlt4U6zYk_zZS2-_C4ZkT4SA'
 
 # Load PDF
 loader = PyPDFLoader("dell_latitude_5420_troubleshooting_demo.pdf")
@@ -21,7 +22,7 @@ splitter = RecursiveCharacterTextSplitter(
 chunks = splitter.split_documents(pages)
 
 # Create embeddings and FAISS database
-embeddings = GoogleGenerativeAIEmbeddings(model = "models/gemini-embedding-001",api_key ='AQ.Ab8RN6KT2qNGSkzHyAUiVkITRcJHYpiE63VgWZsmY80dcBXjqQ')
+embeddings = GoogleGenerativeAIEmbeddings(model = "models/gemini-embedding-001",api_key = GEMINI_API_KEY)
 
 db = FAISS.from_documents(chunks, embeddings)
 
