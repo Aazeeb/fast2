@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
@@ -21,17 +21,12 @@ splitter = RecursiveCharacterTextSplitter(
 chunks = splitter.split_documents(pages)
 
 # Create embeddings and FAISS database
-embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
-)
+embeddings = GoogleGenerativeAIEmbeddings(model = "models/gemini-embedding-001",api_key ='AQ.Ab8RN6KT2qNGSkzHyAUiVkITRcJHYpiE63VgWZsmY80dcBXjqQ')
+
 db = FAISS.from_documents(chunks, embeddings)
 
 # Initialize Groq
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    temperature=0,
-    api_key=GROQ_API_KEY
-)
+model = ChatGroq(model="openai/gpt-oss-20b",api_key=GROQ_API_KEY)
 
 # Prepare prompt
 prompt = ChatPromptTemplate.from_template("""
@@ -69,7 +64,7 @@ app = FastAPI(title="Laptop Troubleshooting API")
 def home():
     return {"message": "Laptop RAG API is running"}
 
-@app.get("/ask")
+@app.post("/ask")
 def ask(question: str):
     return {
         "question": question,
