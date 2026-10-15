@@ -8,3 +8,4 @@ langchain-core
 faiss-cpu
 pypdf
 langchain-google-genai
+dotenv
