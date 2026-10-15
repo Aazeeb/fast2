@@ -5,7 +5,6 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
-from google.colab import userdata
 
 # Load Groq API key from Colab Secrets
 GROQ_API_KEY = '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'
