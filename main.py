@@ -8,7 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 # Load Groq API key from Colab Secrets
 GROQ_API_KEY = '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'
-GEMINI_API_KEy = 'AQ.Ab8RN6I705VMrF0-vQ282Y-1cyKlt4U6zYk_zZS2-_C4ZkT4SA'
+GEMINI_API_KEY = 'AQ.Ab8RN6I705VMrF0-vQ282Y-1cyKlt4U6zYk_zZS2-_C4ZkT4SA'
 
 # Load PDF
 loader = PyPDFLoader("dell_latitude_5420_troubleshooting_demo.pdf")
